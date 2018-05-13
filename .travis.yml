@@ -33,4 +33,4 @@ before_script:
   - mkdir "cmake-build-debug"
   - cmake --build . --target huffman-test
 
-script: "cmake-build-debug/huffman-test"
+script: "./huffman-test"
