@@ -27,4 +27,4 @@ add_executable(huffman-test
         test/gtest/gtest.h
         test/gtest/gtest_main.cc
         test/tests.cpp)
-target_link_libraries(huffman-test huffman)
+target_link_libraries(huffman-test huffman -lpthread)

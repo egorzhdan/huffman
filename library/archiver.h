@@ -1,6 +1,9 @@
 #ifndef HUFFMAN_ARCHIVER_H
 #define HUFFMAN_ARCHIVER_H
 
+#include <string>
+#include <map>
+#include <ostream>
 #include "dictionary.h"
 #include "tree.h"
 #include "obitstream.h"
