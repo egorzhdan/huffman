@@ -19,8 +19,9 @@ namespace huffman {
 
         std::string next_buffer(std::size_t BUFFER_MAX_SIZE);
 
+        void print_codes();
+
     private:
-        std::istream &is;
         ibitstream ibs;
 
         std::map<char, binary_code> codes;

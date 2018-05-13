@@ -1,8 +1,8 @@
 #include <sstream>
-#include <unordered_map>
+#include <iostream>
 #include "unarchiver.h"
 
-huffman::unarchiver::unarchiver(std::istream &is) : is(is), ibs(is) {
+huffman::unarchiver::unarchiver(std::istream &is) : ibs(is) {
     char cur_char = 0;
     binary_code cur_code;
 
@@ -53,17 +53,13 @@ std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) 
     std::size_t length = 0;
 
     binary_code cur_code;
-    std::unordered_map<char, bool> possible_chars;
-    for (const auto &p : codes) possible_chars[p.first] = true;
-
     while (length < BUFFER_MAX_SIZE && ibs.has_more_bits()) {
         cur_code.push(ibs.next_bit());
 
         bool exact_char_exists = false;
         bool possible_char_exists = false;
         char possible_char = 0;
-        for (const auto &p : possible_chars) {
-            if (!p.second) continue;
+        for (const auto &p : codes) {
             char c = p.first;
 
             if (codes[c].starts_with(cur_code)) {
@@ -73,18 +69,23 @@ std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) 
                     exact_char_exists = true;
                     break;
                 }
-            } else possible_chars[p.first] = false;
+            }
         }
 
         if (exact_char_exists) {
-            res << (char) possible_char;
+            res << possible_char;
             length++;
             cur_code = binary_code();
-
-            for (const auto &p : codes) possible_chars[p.first] = true;
         } else if (!possible_char_exists) {
             throw std::runtime_error("non-existing code supplied");
         }
     }
     return res.str();
+}
+
+void huffman::unarchiver::print_codes() {
+    for (const auto &p : codes) {
+        std::cout << "char #" << (int) p.first << " equals " << to_string(p.second) << std::endl;
+    }
+    std::cout << std::endl << std::endl << std::endl;
 }

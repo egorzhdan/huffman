@@ -28,6 +28,7 @@ string unarchive(const string &archive, size_t buf_size = 1000) {
     string unpacked, buffer;
     istringstream is = istringstream(archive);
     huffman::unarchiver unarchiver(is);
+    unarchiver.print_codes();
     do {
         buffer = unarchiver.next_buffer(buf_size);
         unpacked.append(buffer);
@@ -69,7 +70,7 @@ TEST(plain_text, whitespace) {
 
 TEST(plain_text, all) {
     string alpha;
-    for (char c = CHAR_MIN; c < CHAR_MAX; c++) { // todo CHAR_MIN
+    for (char c = CHAR_MIN; c < CHAR_MAX; c++) {
         alpha.push_back(c);
     }
 
