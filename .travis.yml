@@ -29,6 +29,8 @@ before_install:
   - cd "${TRAVIS_BUILD_DIR}"
 
 before_script:
+  - cmake .
+  - mkdir "cmake-build-debug"
   - cmake --build cmake-build-debug --target huffman-test
 
 script: "cmake-build-debug/huffman-test"
