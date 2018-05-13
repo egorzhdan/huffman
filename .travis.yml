@@ -1,0 +1,34 @@
+language: cpp
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      env:
+        - COMPILER=g++-7
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+
+    - os: linux
+      compiler: clang
+      env:
+        - COMPILER=clang-5.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y cmake
+  - cd "${TRAVIS_BUILD_DIR}"
+
+before_script:
+  - cmake --build cmake-build-debug --target huffman-test
+
+script: "cmake-build-debug/huffman-test"
