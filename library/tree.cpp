@@ -4,14 +4,14 @@
 huffman::tree::tree(const dictionary &dict) {
     auto count = dict.get();
 
-    auto comparator = [](node *a, node *b) { return a->weight < b->weight; };
+    auto comparator = [](node *a, node *b) { return a->weight > b->weight; };
     std::priority_queue<node *, std::vector<node *>, decltype(comparator)> s(comparator);
 
     for (const auto& p : count) {
         char c = p.first;
 
         if (count[c] > 0) {
-            auto *cur_node = new node(static_cast<unsigned char>(c), count[c]);
+            auto *cur_node = new node(c, count[c]);
             s.push(cur_node);
         }
     }

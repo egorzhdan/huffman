@@ -22,7 +22,7 @@ namespace huffman {
             node *left = nullptr;
             node *right = nullptr;
 
-            node(char symbol, unsigned weight) : symbol(symbol), weight(weight), represents_symbol(true) {}
+            node(char symbol, unsigned long weight) : symbol(symbol), weight(weight), represents_symbol(true) {}
 
             node(node *left, node *right) : weight(left->weight + right->weight), left(left), right(right) {}
         };

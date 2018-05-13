@@ -44,7 +44,7 @@ bool huffman::binary_code::starts_with(const huffman::binary_code &other) const 
     if (other.size() > size()) return false;
 
     for (std::size_t i = 0; i < other.size(); i++) {
-        if (this->operator[](i) != other[i]) return false;
+        if (data[i] != other[i]) return false;
     }
     return true;
 }
