@@ -12,16 +12,16 @@ matrix:
           packages:
             - g++-7
 
-    - os: linux
-      compiler: clang
-      env:
-        - COMPILER=clang-5.0
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-5.0
-          packages:
-            - clang-5.0
+#    - os: osx
+#      compiler: clang
+#      env:
+#        - COMPILER=clang-5.0
+#      addons:
+#        apt:
+#          sources:
+#            - llvm-toolchain-trusty-5.0
+#          packages:
+#            - clang-5.0
 
 before_install:
   - sudo apt-get update

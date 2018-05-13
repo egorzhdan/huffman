@@ -21,7 +21,7 @@ std::size_t huffman::binary_code::size() const {
 }
 
 const bool &huffman::binary_code::operator[](std::size_t idx) const {
-    return data.operator[](idx);
+    return data[idx];
 }
 
 std::vector<bool>::const_iterator huffman::binary_code::begin() const {
@@ -45,7 +45,7 @@ bool huffman::binary_code::starts_with(const huffman::binary_code &other) const 
     if (other.size() > size()) return false;
 
     for (std::size_t i = 0; i < other.size(); i++) {
-        if (data[i] != other[i]) return false;
+        if (data[i] != other.data[i]) return false;
     }
     return true;
 }
