@@ -29,7 +29,7 @@ before_install:
   - cd "${TRAVIS_BUILD_DIR}"
 
 before_script:
-  - cmake .
+  - cmake . -DCMAKE_CXX_COMPILER=$COMPILER
   - mkdir "cmake-build-debug"
   - cmake --build . --target huffman-test
 
