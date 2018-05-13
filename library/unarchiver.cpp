@@ -1,5 +1,6 @@
 #include <sstream>
 #include <iostream>
+#include <stdexcept>
 #include "unarchiver.h"
 
 huffman::unarchiver::unarchiver(std::istream &is) : ibs(is) {

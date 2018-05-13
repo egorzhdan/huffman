@@ -1,4 +1,5 @@
 #include <sstream>
+#include <stdexcept>
 #include "binary_code.h"
 
 void huffman::binary_code::push(bool b) {
