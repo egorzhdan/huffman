@@ -28,6 +28,10 @@ namespace huffman {
 
             node(node *left, node *right) : weight(left->weight + right->weight), left(left), right(right) {}
 
+            node(const node &other) = delete;
+
+            node &operator=(const node &other) = delete;
+
             ~node();
         };
 

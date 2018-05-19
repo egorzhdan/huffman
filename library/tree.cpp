@@ -27,7 +27,7 @@ huffman::tree::tree(const dictionary &dict) {
     }
 
     if (!s.empty())
-        root = new node(*s.top());
+        root = s.top();
     else
         root = nullptr;
 }
