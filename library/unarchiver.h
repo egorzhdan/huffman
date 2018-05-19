@@ -24,6 +24,7 @@ namespace huffman {
     private:
         ibitstream ibs;
         binary_code cur_code;
+        bool throw_if_next = false;
 
         std::map<char, binary_code> codes;
     };

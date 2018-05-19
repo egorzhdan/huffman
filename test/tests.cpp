@@ -34,7 +34,7 @@ string unarchive(const string &archive, size_t buf_size = 1000) {
     do {
         buffer = unarchiver.next_buffer(buf_size);
         unpacked.append(buffer);
-    } while (buffer.length() > 0);
+    } while (buffer.length() == buf_size);
     return unpacked;
 }
 

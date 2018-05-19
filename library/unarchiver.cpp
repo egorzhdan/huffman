@@ -50,6 +50,10 @@ huffman::unarchiver::unarchiver(std::istream &is) : ibs(is) {
 }
 
 std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) {
+    if (throw_if_next) {
+        throw std::runtime_error("non-existing code supplied");
+    }
+
     std::ostringstream res;
     std::size_t length = 0;
 
@@ -77,7 +81,7 @@ std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) 
             length++;
             cur_code = binary_code();
         } else if (!possible_char_exists) {
-            throw std::runtime_error("non-existing code supplied");
+            throw_if_next = true;
         }
     }
     return res.str();
