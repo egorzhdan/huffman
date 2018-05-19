@@ -53,3 +53,7 @@ void huffman::tree::traverse(node *node, binary_code cur_code, std::map<char, bi
         }
     }
 }
+
+huffman::tree::~tree() {
+    delete root;
+}

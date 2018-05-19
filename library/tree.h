@@ -13,6 +13,8 @@ namespace huffman {
 
         const std::map<char, binary_code> get_codes() const;
 
+        virtual ~tree();
+
     private:
         struct node {
             char symbol = 0;
