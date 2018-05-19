@@ -53,7 +53,6 @@ std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) 
     std::ostringstream res;
     std::size_t length = 0;
 
-    binary_code cur_code;
     while (length < BUFFER_MAX_SIZE && ibs.has_more_bits()) {
         cur_code.push(ibs.next_bit());
 

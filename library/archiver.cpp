@@ -3,6 +3,15 @@
 
 huffman::archiver::archiver(const huffman::tree &tree, std::ostream &s) : os(s), obs(s) {
     tree_res = tree.get_codes();
+    for (auto p : tree_res) {
+        bool all_zero = true;
+        for (bool it : p.second) {
+            if (it) all_zero = false;
+        }
+
+        if (all_zero)
+            tree_res[p.first].push(true);
+    }
 }
 
 void huffman::archiver::init_output() {

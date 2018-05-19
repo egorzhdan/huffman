@@ -23,6 +23,7 @@ namespace huffman {
 
     private:
         ibitstream ibs;
+        binary_code cur_code;
 
         std::map<char, binary_code> codes;
     };
