@@ -20,7 +20,7 @@ namespace huffman {
     private:
         std::ostream &out;
 
-        unsigned char buffer = 0;
+        char buffer = 0;
         std::size_t next_idx = 0;
     };
 

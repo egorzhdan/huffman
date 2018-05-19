@@ -20,7 +20,7 @@ namespace huffman {
     private:
         std::istream &in;
 
-        unsigned char buffer = 0;
+        char buffer = 0;
         std::size_t next_idx = BITS_PER_BUFFER;
 
         void read_next_buffer();
