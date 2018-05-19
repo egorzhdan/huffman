@@ -3,29 +3,31 @@
 
 huffman::archiver::archiver(const huffman::tree &tree, std::ostream &s) : os(s), obs(s) {
     tree_res = tree.get_codes();
-    for (auto p : tree_res) {
+    for (std::size_t c = 0; c < huffman::dictionary::CHAR_COUNT; c++) {
+        auto p = tree_res[c];
+
         bool all_zero = true;
-        for (bool it : p.second) {
+        for (bool it : p) {
             if (it) all_zero = false;
         }
 
         if (all_zero)
-            tree_res[p.first].push(true);
+            tree_res[c].push(true);
     }
 }
 
 void huffman::archiver::init_output() {
-    for (const auto &p : tree_res) {
-        auto it = p.second;
+    for (std::size_t c = 0; c < huffman::dictionary::CHAR_COUNT; c++) {
+        auto it = tree_res[c];
 
-        os << p.first << ' ' << to_string(it) << ' ';
+        os << (char) c << ' ' << to_string(it) << ' ';
     }
     os << "\n\n";
 }
 
 void huffman::archiver::process_output(const std::string &buffer) {
     for (const char &c : buffer) {
-        obs.append(tree_res[c]);
+        obs.append(tree_res[(std::size_t) (unsigned char) c]);
     }
 }
 

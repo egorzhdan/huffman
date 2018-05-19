@@ -5,7 +5,6 @@
 
 huffman::unarchiver::unarchiver(std::istream &is) : ibs(is) {
     char cur_char = 0;
-    binary_code cur_code;
 
     bool code_expected = false; // otherwise char expected
     while (!is.eof()) {
@@ -26,7 +25,7 @@ huffman::unarchiver::unarchiver(std::istream &is) : ibs(is) {
             code_expected = true;
         } else {
             if (cur == ' ') {
-                codes[cur_char] = cur_code;
+                codes[(std::size_t) (unsigned char) cur_char] = cur_code;
                 cur_char = 0;
                 cur_code = binary_code();
 
@@ -47,6 +46,7 @@ huffman::unarchiver::unarchiver(std::istream &is) : ibs(is) {
             }
         }
     }
+    cur_code = binary_code();
 }
 
 std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) {
@@ -63,12 +63,11 @@ std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) 
         bool exact_char_exists = false;
         bool possible_char_exists = false;
         char possible_char = 0;
-        for (const auto &p : codes) {
-            char c = p.first;
+        for (std::size_t c = 0; c < dictionary::CHAR_COUNT; c++) {
 
             if (codes[c].starts_with(cur_code)) {
                 possible_char_exists = true;
-                possible_char = c;
+                possible_char = (unsigned char) c;
                 if (cur_code.starts_with(codes[c])) {
                     exact_char_exists = true;
                     break;
@@ -88,8 +87,8 @@ std::string huffman::unarchiver::next_buffer(const std::size_t BUFFER_MAX_SIZE) 
 }
 
 void huffman::unarchiver::print_codes() {
-    for (const auto &p : codes) {
-        std::cout << "char #" << (int) p.first << " equals " << to_string(p.second) << std::endl;
+    for (std::size_t c = 0; c < dictionary::CHAR_COUNT; c++) {
+        std::cout << "char #" << (int) (unsigned char) c << " equals " << to_string(codes[c]) << std::endl;
     }
     std::cout << std::endl << std::endl << std::endl;
 }

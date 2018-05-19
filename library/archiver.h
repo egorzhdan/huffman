@@ -23,7 +23,7 @@ namespace huffman {
     private:
         std::ostream &os;
         obitstream obs;
-        std::map<char, huffman::binary_code> tree_res;
+        std::array<binary_code, dictionary::CHAR_COUNT> tree_res;
     };
 
 }

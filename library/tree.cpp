@@ -30,8 +30,8 @@ huffman::tree::tree(const dictionary &dict) {
         root = nullptr;
 }
 
-const std::map<char, huffman::binary_code> huffman::tree::get_codes() const {
-    std::map<char, binary_code> res;
+const std::array<huffman::binary_code, huffman::dictionary::CHAR_COUNT> huffman::tree::get_codes() const {
+    std::array<binary_code, dictionary::CHAR_COUNT> res = {};
 
     if (root)
         traverse(root, binary_code(), res);
@@ -39,9 +39,9 @@ const std::map<char, huffman::binary_code> huffman::tree::get_codes() const {
     return res;
 }
 
-void huffman::tree::traverse(node *node, binary_code cur_code, std::map<char, binary_code> &codes) const {
+void huffman::tree::traverse(node *node, binary_code cur_code, std::array<binary_code, dictionary::CHAR_COUNT> &codes) const {
     if (node->represents_symbol) {
-        codes[node->symbol] = binary_code(cur_code);
+        codes[(std::size_t) (unsigned char) node->symbol] = binary_code(cur_code);
     } else {
         if (node->left) {
             cur_code.push(false);

@@ -26,7 +26,7 @@ namespace huffman {
         binary_code cur_code;
         bool throw_if_next = false;
 
-        std::map<char, binary_code> codes;
+        std::array<binary_code, dictionary::CHAR_COUNT> codes;
     };
 
 }

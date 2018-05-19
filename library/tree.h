@@ -11,7 +11,7 @@ namespace huffman {
     public:
         explicit tree(const dictionary &dict);
 
-        const std::map<char, binary_code> get_codes() const;
+        const std::array<binary_code, dictionary::CHAR_COUNT> get_codes() const;
 
         ~tree();
 
@@ -37,7 +37,7 @@ namespace huffman {
 
         node *root;
 
-        void traverse(node *node, binary_code cur_code, std::map<char, binary_code> &codes) const;
+        void traverse(node *node, binary_code cur_code, std::array<binary_code, dictionary::CHAR_COUNT> &codes) const;
     };
 
 }

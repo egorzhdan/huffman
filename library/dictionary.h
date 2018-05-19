@@ -10,7 +10,7 @@ namespace huffman {
 
     class dictionary {
     public:
-        static const std::size_t CHAR_COUNT = (std::size_t) std::numeric_limits<unsigned char>::max() + 1;
+        static const std::size_t CHAR_COUNT = 256;
 
         void consume_chunk(const std::string &buffer);
 
