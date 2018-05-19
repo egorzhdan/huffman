@@ -7,7 +7,7 @@ huffman::tree::tree(const dictionary &dict) {
     auto comparator = [](node *a, node *b) { return a->weight > b->weight; };
     std::priority_queue<node *, std::vector<node *>, decltype(comparator)> s(comparator);
 
-    for (const auto& p : count) {
+    for (const auto &p : count) {
         char c = p.first;
 
         if (count[c] > 0) {
@@ -39,7 +39,7 @@ const std::map<char, huffman::binary_code> huffman::tree::get_codes() const {
 
 void huffman::tree::traverse(node *node, binary_code cur_code, std::map<char, binary_code> &codes) const {
     if (node->represents_symbol) {
-        codes[node->symbol] = cur_code;
+        codes[node->symbol] = binary_code(cur_code);
     } else {
         if (node->left) {
             cur_code.push(false);
@@ -56,4 +56,9 @@ void huffman::tree::traverse(node *node, binary_code cur_code, std::map<char, bi
 
 huffman::tree::~tree() {
     delete root;
+}
+
+huffman::tree::node::~node() {
+    delete left;
+    delete right;
 }

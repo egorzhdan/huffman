@@ -23,6 +23,8 @@ namespace huffman {
 
         std::vector<bool>::const_iterator end() const;
 
+        bool get(std::size_t idx) const;
+
         bool starts_with(const binary_code &other) const;
 
     private:

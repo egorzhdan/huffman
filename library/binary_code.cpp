@@ -31,11 +31,26 @@ bool huffman::binary_code::starts_with(const huffman::binary_code &other) const 
     return true;
 }
 
-std::string huffman::to_string(const huffman::binary_code &code) {
-    std::ostringstream res;
+bool huffman::binary_code::get(std::size_t idx) const {
+    return data[idx];
+}
 
-    if (code.size() == 0) res << 'n';
-    else for (const auto &it : code) res << it;
+std::string huffman::to_string(const huffman::binary_code &code) {
+    printf("%d", code.size());
+    fflush(stdout);
+
+    std::ostringstream res;
+//    std::string res;
+
+//    if (code.size() == 0) res.push_back('n');
+//    else {
+        for (std::size_t i = 0; i < code.size(); i++) {
+            bool kek = code.get(i);
+            res << kek; // clang ok
+//            res << (kek ? '1' : '0');
+//            res.push_back((char) kek);
+        }
+//    }
 
     return res.str();
 }

@@ -13,7 +13,7 @@ namespace huffman {
 
         const std::map<char, binary_code> get_codes() const;
 
-        virtual ~tree();
+        ~tree();
 
     private:
         struct node {
@@ -21,17 +21,19 @@ namespace huffman {
             unsigned long weight = 1;
             bool represents_symbol = false;
 
-            node *left = nullptr;
-            node *right = nullptr;
+            node *left;
+            node *right;
 
-            node(char symbol, unsigned long weight) : symbol(symbol), weight(weight), represents_symbol(true) {}
+            node(char symbol, unsigned long weight) : symbol(symbol), weight(weight), represents_symbol(true), left(nullptr), right(nullptr) {}
 
             node(node *left, node *right) : weight(left->weight + right->weight), left(left), right(right) {}
+
+            ~node();
         };
 
         node *root;
 
-        void traverse(node* node, binary_code cur_code, std::map<char, binary_code>& codes) const;
+        void traverse(node *node, binary_code cur_code, std::map<char, binary_code> &codes) const;
     };
 
 }
