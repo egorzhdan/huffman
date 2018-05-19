@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
                 buffer = unarchiver.next_buffer(BUFFER_SIZE);
                 os << buffer;
                 os.flush();
-            } while (!buffer.empty());
+            } while (buffer.size() == BUFFER_SIZE);
         }
 
         is.close();
