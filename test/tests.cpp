@@ -18,7 +18,9 @@ string archive(const string &src, size_t buf_size = 1000) {
     huffman::archiver archiver(tree, os);
 
     archiver.init_output();
-    archiver.process_output(src);
+    for (size_t i = 0; i < src.length(); i += buf_size) {
+        archiver.process_output(src.substr(i, buf_size));
+    }
     archiver.finish_output();
 
     return os.str();
