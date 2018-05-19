@@ -1,4 +1,5 @@
 #include <cassert>
+#include <string>
 #include "ibitstream.h"
 #include "bitstream.h"
 

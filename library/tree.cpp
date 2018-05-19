@@ -26,13 +26,17 @@ huffman::tree::tree(const dictionary &dict) {
         s.push(merged);
     }
 
-    root = new node(*s.top());
+    if (!s.empty())
+        root = new node(*s.top());
+    else
+        root = nullptr;
 }
 
 const std::map<char, huffman::binary_code> huffman::tree::get_codes() const {
     std::map<char, binary_code> res;
 
-    traverse(root, binary_code(), res);
+    if (root)
+        traverse(root, binary_code(), res);
 
     return res;
 }

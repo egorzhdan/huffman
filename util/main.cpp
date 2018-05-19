@@ -52,14 +52,16 @@ int main(int argc, char **argv) {
         std::ifstream is(input_file_name, std::ifstream::binary);
         std::ofstream os(output_file_name, std::ofstream::binary);
 
-        huffman::unarchiver unarchiver(is);
-        static const std::size_t BUFFER_SIZE = 100;
-        std::string buffer;
-        do {
-            buffer = unarchiver.next_buffer(BUFFER_SIZE);
-            os << buffer;
-            os.flush();
-        } while (!buffer.empty());
+        if (is.peek() != std::ifstream::traits_type::eof()) {
+            huffman::unarchiver unarchiver(is);
+            static const std::size_t BUFFER_SIZE = 100;
+            std::string buffer;
+            do {
+                buffer = unarchiver.next_buffer(BUFFER_SIZE);
+                os << buffer;
+                os.flush();
+            } while (!buffer.empty());
+        }
 
         is.close();
         os.close();
