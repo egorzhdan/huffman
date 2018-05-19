@@ -3,9 +3,9 @@ project(Huffman)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_COMPILER /usr/local/bin/g++-8)
+#set(CMAKE_CXX_COMPILER /usr/local/bin/g++-8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++17 -pedantic")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address,undefined --coverage -D_GLIBCXX_DEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address,undefined -D_GLIBCXX_DEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
 
 add_library(huffman STATIC

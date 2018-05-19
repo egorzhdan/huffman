@@ -36,21 +36,21 @@ bool huffman::binary_code::get(std::size_t idx) const {
 }
 
 std::string huffman::to_string(const huffman::binary_code &code) {
-    printf("%d", code.size());
-    fflush(stdout);
+//    printf("%zu", code.size());
+//    fflush(stdout);
 
-    std::ostringstream res;
-//    std::string res;
+//    std::ostringstream res;
+    std::string res = "";
 
-//    if (code.size() == 0) res.push_back('n');
-//    else {
+    if (code.size() == 0) res.push_back('n');
+    else {
         for (std::size_t i = 0; i < code.size(); i++) {
             bool kek = code.get(i);
-            res << kek; // clang ok
+//        res << kek; // clang ok
 //            res << (kek ? '1' : '0');
-//            res.push_back((char) kek);
+            res.push_back(kek ? '1' : '0');
         }
-//    }
+    }
 
-    return res.str();
+    return res; //.str();
 }
