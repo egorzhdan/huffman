@@ -13,7 +13,7 @@ namespace huffman {
 
         void append(bool bit);
 
-        void append(binary_code code);
+        void append(const binary_code& code);
 
         void flush();
 

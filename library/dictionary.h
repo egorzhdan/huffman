@@ -14,10 +14,10 @@ namespace huffman {
 
         void consume_chunk(const std::string &buffer);
 
-        const std::map<char, unsigned long> &get() const;
+        const std::array<unsigned long, CHAR_COUNT> &get() const;
 
     private:
-        std::map<char, unsigned long> count = {};
+        std::array<unsigned long, CHAR_COUNT> count = {};
     };
 
 }

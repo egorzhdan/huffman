@@ -7,11 +7,9 @@ huffman::tree::tree(const dictionary &dict) {
     auto comparator = [](node *a, node *b) { return a->weight > b->weight; };
     std::priority_queue<node *, std::vector<node *>, decltype(comparator)> s(comparator);
 
-    for (const auto &p : count) {
-        char c = p.first;
-
+    for (std::size_t c = 0; c < dictionary::CHAR_COUNT; c++) {
         if (count[c] > 0) {
-            auto *cur_node = new node(c, count[c]);
+            auto *cur_node = new node((char) c, count[c]);
             s.push(cur_node);
         }
     }
