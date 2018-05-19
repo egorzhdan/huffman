@@ -13,17 +13,11 @@ namespace huffman {
 
         explicit binary_code(std::size_t size) : data(size, false) {}
 
-        explicit binary_code(const std::string &s);
-
         void push(bool b);
-
-        void append(const binary_code &other);
 
         void pop();
 
         std::size_t size() const;
-
-        const bool &operator[](std::size_t idx) const;
 
         std::vector<bool>::const_iterator begin() const;
 
